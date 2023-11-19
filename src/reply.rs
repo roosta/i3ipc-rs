@@ -245,7 +245,7 @@ pub struct Node {
 }
 
 impl Node {
-    pub fn find_child(&self, f: fn(&Node) -> bool) -> Option<&Node> {
+    pub fn find_child<F: Copy>(&self, f: F) -> Option<&Node> where F: Fn(&Node) -> bool {
         if f(&self) {
             return Some(self)
         }
